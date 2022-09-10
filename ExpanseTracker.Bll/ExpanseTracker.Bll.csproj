@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExpanseTracker.Dal\ExpanseTracker.Dal.csproj" />
+    <ProjectReference Include="..\ExpanseTracker.Dto\ExpanseTracker.Dto.csproj" />
+  </ItemGroup>
+
+</Project>
