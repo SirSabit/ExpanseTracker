@@ -36,8 +36,8 @@ namespace ExpanseTracker.Dal.Repositories.ExpanseRepositories
         {
             StringBuilder query = new StringBuilder();
             query.Append($"UPDATE public.\"{TableName}\"");
-            query.Append($"SET \"ExpanseName\"=@Expanse_Name, \"ExpanseAmount\"=@Expanse_Amount, \"ExpanseDate\"= @Expanse_Date, \"IsDeleted\"=@Is_Deleted");
-            query.Append($"WHERE \"ID\"= @Id;");
+            query.Append($"SET \"ExpanseName\" = @Expanse_Name, \"ExpanseAmount\" = @Expanse_Amount, \"ExpanseDate\" = @Expanse_Date, \"IsDeleted\" = @Is_Deleted ");
+            query.Append($"WHERE \"ID\" = @Id;");
 
             var data = PrepareDynamicParameters(entity);
 
@@ -48,7 +48,7 @@ namespace ExpanseTracker.Dal.Repositories.ExpanseRepositories
         {
             StringBuilder query = new StringBuilder();
             query.Append($"UPDATE public.\"{TableName}\"");
-            query.Append($"SET \"IsDeleted\"=@Is_Deleted");
+            query.Append($"SET \"IsDeleted\"= @Is_Deleted ");
             query.Append($"WHERE \"ID\"= @Id;");
 
             var data = PrepareDynamicParameters(entity);

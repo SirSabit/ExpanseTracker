@@ -22,79 +22,114 @@ namespace ExpanseTracker.Bll.Repositories.ExpanseRepositories
 
         public async Task Insert(ExpanseDto dto)
         {
-            var entity = new ExpanseEntity()
+            try
             {
-                ID = dto.ID,
-                ExpanseAmount = dto.ExpanseAmount,
-                ExpanseDate = dto.ExpanseDate,
-                ExpanseName = dto.ExpanseName,
-                IsDeleted = dto.IsDeleted
-            };
-            await _expanseRepository.InsertExpanseAsync(entity);
+                var entity = new ExpanseEntity()
+                {
+                    ID = dto.ID,
+                    ExpanseAmount = dto.ExpanseAmount,
+                    ExpanseDate = dto.ExpanseDate,
+                    ExpanseName = dto.ExpanseName,
+                    IsDeleted = dto.IsDeleted
+                };
+                await _expanseRepository.InsertExpanseAsync(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task Update(ExpanseDto dto)
         {
-            var entity = new ExpanseEntity()
+            try
             {
-                ID = dto.ID,
-                ExpanseAmount = dto.ExpanseAmount,
-                ExpanseDate = dto.ExpanseDate,
-                ExpanseName = dto.ExpanseName,
-                IsDeleted = dto.IsDeleted
-            };
+                var entity = new ExpanseEntity()
+                {
+                    ID = dto.ID,
+                    ExpanseAmount = dto.ExpanseAmount,
+                    ExpanseDate = dto.ExpanseDate,
+                    ExpanseName = dto.ExpanseName,
+                    IsDeleted = dto.IsDeleted
+                };
 
-            await _expanseRepository.UpdateExpanseAsync(entity);
+                await _expanseRepository.UpdateExpanseAsync(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task Delete(ExpanseDto dto)
         {
-            var entity = new ExpanseEntity()
+            try
             {
-                ID = dto.ID,
-                ExpanseAmount = dto.ExpanseAmount,
-                ExpanseDate = dto.ExpanseDate,
-                ExpanseName = dto.ExpanseName,
-                IsDeleted = dto.IsDeleted
-            };
+                var entity = new ExpanseEntity()
+                {
+                    ID = dto.ID,
+                    ExpanseAmount = dto.ExpanseAmount,
+                    ExpanseDate = dto.ExpanseDate,
+                    ExpanseName = dto.ExpanseName,
+                    IsDeleted = true
+                };
 
-            await _expanseRepository.DeleteExpanseAsync(entity);
+                await _expanseRepository.DeleteExpanseAsync(entity);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public async Task<ExpanseDto> GetById(int Id)
         {
-            var data = await _expanseRepository.GetExpanseByIdAsync(Id);
-
-            var dto = new ExpanseDto()
+            try
             {
-                ID = data.ID,
-                ExpanseAmount = data.ExpanseAmount,
-                ExpanseDate = data.ExpanseDate,
-                ExpanseName = data.ExpanseName,
-                IsDeleted = data.IsDeleted
-            };
+                var data = await _expanseRepository.GetExpanseByIdAsync(Id);
 
-            return dto;
+                var dto = new ExpanseDto()
+                {
+                    ID = data.ID,
+                    ExpanseAmount = data.ExpanseAmount,
+                    ExpanseDate = data.ExpanseDate,
+                    ExpanseName = data.ExpanseName,
+                    IsDeleted = data.IsDeleted
+                };
+                return dto;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
         }
 
         public async Task<List<ExpanseDto>> GetAllExpanses()
         {
-            List<ExpanseDto> expanses = new List<ExpanseDto>();
-            var data = await _expanseRepository.GetAllExpansesAsync();
-            foreach (var item in data)
+            try
             {
-                var dto = new ExpanseDto()
+                List<ExpanseDto> expanses = new List<ExpanseDto>();
+                var data = await _expanseRepository.GetAllExpansesAsync();
+                foreach (var item in data)
                 {
-                    ID = item.ID,
-                    ExpanseAmount = item.ExpanseAmount,
-                    ExpanseDate = item.ExpanseDate,
-                    ExpanseName = item.ExpanseName,
-                    IsDeleted = item.IsDeleted
-                };
+                    var dto = new ExpanseDto()
+                    {
+                        ID = item.ID,
+                        ExpanseAmount = item.ExpanseAmount,
+                        ExpanseDate = item.ExpanseDate,
+                        ExpanseName = item.ExpanseName,
+                        IsDeleted = item.IsDeleted
+                    };
 
-                expanses.Add(dto);
+                    expanses.Add(dto);
+                }
+                return expanses;
             }
-            return expanses;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
