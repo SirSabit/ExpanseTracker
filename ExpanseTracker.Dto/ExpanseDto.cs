@@ -15,6 +15,8 @@ namespace ExpanseTracker.Dto
         public decimal ExpanseAmount { get; set; }
         public DateTime ExpanseDate { get; set; }
 
+        public string ExpanseDateEdited => ExpanseDate.ToString("dd-MM-yyy");
+
         public bool IsDeleted { get; set; } = false;
     }
 }

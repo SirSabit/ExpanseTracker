@@ -92,7 +92,7 @@ namespace ExpanseTracker.Bll.Repositories.ExpanseRepositories
                 {
                     ID = data.ID,
                     ExpanseAmount = data.ExpanseAmount,
-                    ExpanseDate = data.ExpanseDate,
+                    ExpanseDate = data.ExpanseDate.Date,
                     ExpanseName = data.ExpanseName,
                     IsDeleted = data.IsDeleted
                 };

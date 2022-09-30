@@ -37,7 +37,7 @@ namespace ExpanseTracker.Api.Controllers
             data.Wait();
 
             if (data.IsCompletedSuccessfully)
-                return Ok(data);
+                return Ok(data.Result);
 
             return BadRequest(data.Result);
         }
