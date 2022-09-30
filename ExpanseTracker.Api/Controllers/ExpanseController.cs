@@ -83,12 +83,12 @@ namespace ExpanseTracker.Api.Controllers
             return BadRequest(update);
         }
 
-        [HttpDelete]
-        public IActionResult Delete(ExpanseDeleteModel model)
+        [HttpDelete("/id")]
+        public IActionResult Delete(int id)
         {
             var entity = new ExpanseDto()
             {
-                ID = model.Id
+                ID = id
             };
 
             var delete = _expanseBllRepository.Delete(entity);
