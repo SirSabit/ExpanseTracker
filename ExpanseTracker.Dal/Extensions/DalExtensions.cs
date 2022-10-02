@@ -1,5 +1,6 @@
 ﻿using ExpanseTracker.Dal.DataAccess.PostgreDataAccess;
 using ExpanseTracker.Dal.Repositories.ExpanseRepositories;
+using ExpanseTracker.Dal.Repositories.StatisticsRepository;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace ExpanseTracker.Dal.Extensions
         {
             services.AddScoped(typeof(IPGDataAccess<>), typeof(PGDataAccess<>));
             services.AddScoped<IExpanseRepository, ExpanseRepository>();
+            services.AddScoped<IStatisticsRepository, StatisticsRepository>();
         }
     }
 }

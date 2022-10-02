@@ -24,5 +24,12 @@ namespace ExpanseTracker.Dal.DataAccess.PostgreDataAccess
         /// <param name="query">Sql query</param>
         /// <returns>Returns a single row query</returns>
         Task<T> GetDataAsync(string query);
+        /// <summary>
+        /// Gets data with dynamic parameters
+        /// </summary>
+        /// <param name="query">SQL query</param>
+        /// <param name="parameters">Dapper Dynamic Parameters for the query</param>
+        /// <returns>Returns a single row query</returns>
+        Task<T> GetDataAsync(string query, DynamicParameters parameters);
     }
 }

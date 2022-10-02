@@ -38,7 +38,15 @@ namespace ExpanseTracker.Dal.DataAccess.PostgreDataAccess
             }
         }
 
-       
+        public async Task<T> GetDataAsync(string query,DynamicParameters parameters)
+        {
+            using (IDbConnection dbConnection = new NpgsqlConnection(_configuration.GetConnectionString(ConnectionString)))
+            {
+                return await dbConnection.QueryFirstAsync<T>(query,parameters);
+            }
+        }
+
+
         public async Task ExecuteQuery(string query, DynamicParameters data)
         {
             using (IDbConnection dbConnection = new NpgsqlConnection(_configuration.GetConnectionString(ConnectionString)))
