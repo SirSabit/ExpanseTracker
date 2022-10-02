@@ -1,4 +1,5 @@
 ﻿using ExpanseTracker.Dal.Repositories.StatisticsRepository;
+using ExpanseTracker.Dto.Enums;
 using ExpanseTracker.Dto.Statistics;
 using System;
 using System.Collections.Generic;
@@ -17,13 +18,18 @@ namespace ExpanseTracker.Bll.Repositories.StatisticsRepository
             _statisticsRepository = statisticsRepository;
         }
 
-        public async Task<TotalCountDto> TotalCountBetweenDates(DateTime firstDate, DateTime secondDate)
+        public async Task<TotalCountDto> MonthlyTotalExpanse(MonthEnum month)
         {
             try
-            {
-                var result = await _statisticsRepository.GetTotalCountBetweenDates(firstDate, secondDate);
+            {                
+                DateTime today = DateTime.Today;
 
-                return new TotalCountDto { Count = result.Count };
+                DateTime firstDate = new DateTime(today.Year, (int)month, 1);
+                DateTime lastDate = new DateTime(today.Year, (int)month, DateTime.DaysInMonth(today.Year, (int)month));
+
+                var result =await _statisticsRepository.GetTotalCountBetweenDates(firstDate, lastDate);
+
+                return new TotalCountDto { Count = result.Count};
             }
             catch (Exception ex)
             {

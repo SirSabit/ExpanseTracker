@@ -1,15 +1,15 @@
-﻿using ExpanseTracker.Dto.Statistics;
+﻿using ExpanseTracker.Dto.Enums;
+using ExpanseTracker.Dto.Statistics;
 
 namespace ExpanseTracker.Bll.Repositories.StatisticsRepository
 {
     public interface IStatisticsBllRepository
     {
         /// <summary>
-        /// Get the total Count of the Amount Between two spesific Dates
+        /// Calculates monthly expanse amount
         /// </summary>
-        /// <param name="firstDate">First Date</param>
-        /// <param name="secondDate">Second Date</param>
-        /// <returns>Returns total expanse amount</returns>
-        Task<TotalCountDto> TotalCountBetweenDates(DateTime firstDate, DateTime secondDate);
+        /// <param name="month">Requested month parameter</param>
+        /// <returns>Decimal Monthly Expanse Amount</returns>
+        Task<TotalCountDto> MonthlyTotalExpanse(MonthEnum month);
     }
 }
