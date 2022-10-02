@@ -27,7 +27,8 @@ namespace ExpanseTracker.Dal.Repositories.StatisticsRepository
             StringBuilder query = new StringBuilder();
             query.Append($"SELECT SUM(\"ExpanseAmount\") AS \"Count\" FROM {_tableName} ");
             query.Append($"WHERE \"ExpanseDate\" >= :FirstDate ");
-            query.Append($"AND \"ExpanseDate\" < :SecondDate ; ");
+            query.Append($"AND \"ExpanseDate\" <= :SecondDate ");
+            query.Append($"AND \"IsDeleted\" = 'false' ");
 
             return await _pGDataAccess.GetDataAsync(query.ToString(), parameters);
         }
