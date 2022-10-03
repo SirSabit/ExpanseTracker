@@ -1,12 +1,7 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExpanseTracker.Dal.DataAccess.PostgreDataAccess
 {
@@ -21,7 +16,7 @@ namespace ExpanseTracker.Dal.DataAccess.PostgreDataAccess
             _configuration = configuration;
         }
 
-        
+
         public async Task<IEnumerable<T>> GetAllDataAsync(string query)
         {
             using (IDbConnection dbConnection = new NpgsqlConnection(_configuration.GetConnectionString(ConnectionString)))
@@ -38,11 +33,11 @@ namespace ExpanseTracker.Dal.DataAccess.PostgreDataAccess
             }
         }
 
-        public async Task<T> GetDataAsync(string query,DynamicParameters parameters)
+        public async Task<T> GetDataAsync(string query, DynamicParameters parameters)
         {
             using (IDbConnection dbConnection = new NpgsqlConnection(_configuration.GetConnectionString(ConnectionString)))
             {
-                return await dbConnection.QueryFirstAsync<T>(query,parameters);
+                return await dbConnection.QueryFirstAsync<T>(query, parameters);
             }
         }
 

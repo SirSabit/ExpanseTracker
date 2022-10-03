@@ -1,32 +1,31 @@
-﻿using ExpanseTracker.Api.Models.Statistics.Monthly;
+﻿using ExpanseTracker.Api.Models.Statistics.Yearly;
 using ExpanseTracker.Bll.Repositories.StatisticsRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpanseTracker.Api.Controllers.StatisticsControllers
 {
-    [Route("monthly-statistics")]
+    [Route("yearly-statistics")]
     [ApiController]
-    public class MonthlyStatisticsController : ControllerBase
+    public class YearlyStatisticsController : ControllerBase
     {
         private readonly IStatisticsBllRepository _statisticsBllRepository;
 
-        public MonthlyStatisticsController(IStatisticsBllRepository statisticsBllRepository)
+        public YearlyStatisticsController(IStatisticsBllRepository statisticsBllRepository)
         {
             _statisticsBllRepository = statisticsBllRepository;
         }
 
-
         [HttpPost("/total-expanse")]
-        public IActionResult MonthlyTotalExpanse(MonthlyTotalExpanseRequest request)
+        public IActionResult YearlyTotalExpanse(YearlyTotalExpanseRequest request)
         {
-
             if (ModelState.IsValid)
             {
-                var result = _statisticsBllRepository.MonthlyTotalExpanse(request.Month).Result;
+                var result = _statisticsBllRepository.YearlyTotalExpanse(request.Year);
 
-                return Ok(result);
+                return Ok(result.Result);
             }
             return BadRequest();
         }
+
     }
 }

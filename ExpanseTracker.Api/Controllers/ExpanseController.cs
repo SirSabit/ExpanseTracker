@@ -1,7 +1,6 @@
 ﻿using ExpanseTracker.Api.Models;
 using ExpanseTracker.Bll.Repositories.ExpanseRepositories;
 using ExpanseTracker.Dto;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExpanseTracker.Api.Controllers
@@ -53,7 +52,7 @@ namespace ExpanseTracker.Api.Controllers
             };
 
             var insert = _expanseBllRepository.Insert(entity);
-            
+
             insert.Wait();
 
             if (insert.IsCompletedSuccessfully)
@@ -93,7 +92,7 @@ namespace ExpanseTracker.Api.Controllers
 
             var delete = _expanseBllRepository.Delete(entity);
 
-                delete.Wait();
+            delete.Wait();
 
             if (delete.IsCompletedSuccessfully)
                 return Ok();

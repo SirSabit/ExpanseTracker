@@ -1,11 +1,7 @@
 ﻿using Dapper;
 using ExpanseTracker.Dal.DataAccess.PostgreDataAccess;
 using ExpanseTracker.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ExpanseTracker.Dal.Repositories.StatisticsRepository
 {

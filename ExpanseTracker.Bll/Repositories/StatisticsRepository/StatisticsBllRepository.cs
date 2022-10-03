@@ -1,11 +1,6 @@
 ﻿using ExpanseTracker.Dal.Repositories.StatisticsRepository;
 using ExpanseTracker.Dto.Enums;
 using ExpanseTracker.Dto.Statistics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ExpanseTracker.Bll.Repositories.StatisticsRepository
 {
@@ -21,15 +16,15 @@ namespace ExpanseTracker.Bll.Repositories.StatisticsRepository
         public async Task<TotalCountDto> MonthlyTotalExpanse(MonthEnum month)
         {
             try
-            {                
+            {
                 DateTime today = DateTime.Today;
 
                 DateTime firstDate = new DateTime(today.Year, (int)month, 1);
                 DateTime lastDate = new DateTime(today.Year, (int)month, DateTime.DaysInMonth(today.Year, (int)month));
 
-                var result =await _statisticsRepository.GetTotalCountBetweenDates(firstDate, lastDate);
+                var result = await _statisticsRepository.GetTotalCountBetweenDates(firstDate, lastDate);
 
-                return new TotalCountDto { Count = result.Count};
+                return new TotalCountDto { Count = result.Count };
             }
             catch (Exception ex)
             {
@@ -37,5 +32,24 @@ namespace ExpanseTracker.Bll.Repositories.StatisticsRepository
             }
         }
 
+        public async Task<TotalCountDto> YearlyTotalExpanse(int year)
+        {
+            DateTime firstDate = new DateTime(year, 1, 1);
+            DateTime lastDate = new DateTime(year, 12, 31);
+
+            var result = await _statisticsRepository.GetTotalCountBetweenDates(firstDate, lastDate);
+
+            return new TotalCountDto { Count = result.Count };
+        }
+
+        public async Task<TotalCountDto> TotalExpanseOfLastSevenDays()
+        {
+            var secondDate = DateTime.Today;
+            var firstDate = secondDate.AddDays(-7);
+
+            var result = await _statisticsRepository.GetTotalCountBetweenDates(firstDate, secondDate);
+
+            return new TotalCountDto { Count = result.Count };
+        }
     }
 }

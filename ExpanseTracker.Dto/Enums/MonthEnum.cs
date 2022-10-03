@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ExpanseTracker.Dto.Enums
+﻿namespace ExpanseTracker.Dto.Enums
 {
     public enum MonthEnum
     {
-        January =1,
+        January = 1,
         February,
         March,
         April,

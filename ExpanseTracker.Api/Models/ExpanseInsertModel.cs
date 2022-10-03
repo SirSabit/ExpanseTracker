@@ -6,6 +6,6 @@
 
         public decimal ExpanseAmount { get; set; }
         public DateTime ExpanseDate { get; set; }
-        
+
     }
 }
